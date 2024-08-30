@@ -6,6 +6,11 @@
 	"output": {
 		"abi": [
 			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
 				"anonymous": false,
 				"inputs": [
 					{
@@ -24,11 +29,11 @@
 					{
 						"indexed": true,
 						"internalType": "address",
-						"name": "newVoter",
+						"name": "newPerson",
 						"type": "address"
 					}
 				],
-				"name": "newVoter",
+				"name": "newPerson",
 				"type": "event"
 			},
 			{
@@ -62,12 +67,42 @@
 				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "electionId",
+						"name": "Id",
 						"type": "uint256"
 					},
 					{
 						"internalType": "string",
 						"name": "purpose",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "candidate1",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "candidate2",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "vote_candidate1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "vote_candidate2",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "position",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "GEO",
 						"type": "string"
 					},
 					{
@@ -92,7 +127,7 @@
 						"type": "address"
 					}
 				],
-				"name": "Voters",
+				"name": "Persons",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -126,37 +161,46 @@
 			{
 				"inputs": [
 					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"name": "Positions",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "title",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "holder",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
 					}
 				],
-				"name": "allVoters",
+				"name": "Votes",
 				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "id",
+						"name": "votes",
 						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "name",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "position",
-						"type": "string"
-					},
-					{
-						"internalType": "bool",
-						"name": "exists",
-						"type": "bool"
-					},
-					{
-						"internalType": "bool",
-						"name": "qualified",
-						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -176,6 +220,37 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_electionId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_candidate",
+						"type": "address"
+					}
+				],
+				"name": "castVote",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_electionId",
+						"type": "uint256"
+					}
+				],
+				"name": "concludeElection",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "electionsCounter",
 				"outputs": [
@@ -190,7 +265,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "getAllVoters",
+				"name": "getAllPersons",
 				"outputs": [
 					{
 						"components": [
@@ -220,7 +295,7 @@
 								"type": "bool"
 							}
 						],
-						"internalType": "struct ELECTION_SYSTEM.Voter[]",
+						"internalType": "struct ELECTION_SYSTEM.Person[]",
 						"name": "",
 						"type": "tuple[]"
 					}
@@ -236,48 +311,28 @@
 						"type": "string"
 					},
 					{
-						"internalType": "address[]",
-						"name": "_candidates",
-						"type": "address[]"
-					},
-					{
-						"internalType": "string[2]",
-						"name": "_position",
-						"type": "string[2]"
-					}
-				],
-				"name": "initiateElection",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "address",
-						"name": "_candidate",
+						"name": "_candidate1",
 						"type": "address"
 					},
 					{
-						"internalType": "uint256",
-						"name": "electionID",
-						"type": "uint256"
-					}
-				],
-				"name": "nominateCandidate",
-				"outputs": [
+						"internalType": "address",
+						"name": "_candidate2",
+						"type": "address"
+					},
 					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
+						"internalType": "string",
+						"name": "_position",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_geo",
+						"type": "string"
 					}
 				],
+				"name": "initiateElection",
+				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
@@ -289,7 +344,7 @@
 						"type": "string"
 					}
 				],
-				"name": "registerVoter",
+				"name": "registerPerson",
 				"outputs": [
 					{
 						"internalType": "bool",
@@ -329,11 +384,11 @@
 	},
 	"sources": {
 		"smartC/contracts/Governator.sol": {
-			"keccak256": "0x69ec3998f94d13ee50586ffbd3c2fe28a796ba9ebde0847d5dec48911adbf89c",
+			"keccak256": "0x54ef394589663482285e1b10bd957129942cd571e55c9246b21ca1d74470879a",
 			"license": "SEE LICENSE IN LICENSE",
 			"urls": [
-				"bzz-raw://5d51733fee95f521acb3fb16c45249673256323083851b8f57a38015f6aab5a2",
-				"dweb:/ipfs/Qmb84ks7WTPdALnKgUBPC56NiBUDAyhaDn1UwcnL7Xanff"
+				"bzz-raw://91bcb8742312304fea592a04bd1585d9aff15c10ba621d6476ded00b8bc70cfb",
+				"dweb:/ipfs/QmUC6EcVA3vKmgGzox5LcYdX1ey1Ve7mh4KtJTxHEHu2ZH"
 			]
 		}
 	},
