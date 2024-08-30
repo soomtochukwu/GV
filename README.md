@@ -6,5 +6,5 @@ Governator is a decentralized application (dApp) designed to facilitate open gov
 
 **Root directory structure**
 
-- ./governator: FrontEnd code (nextJS)
-- ./smc: Solidity smart contract code (foundry)
+- _./governator_: FrontEnd code (_nextJS_)
+- _./smc_: Solidity smart contract code (_hardhat_)
