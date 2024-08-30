@@ -39,14 +39,12 @@ contract ELECTION_SYSTEM {
         uint electionId;
         string purpose; // eg., purpose = "National mid-term presidential election, 2027, PO vs BAT"
         address[] candidates; // [can1, can2]
-        string[] position; // strict length of 2. eg., position = ["president", "Nigeria"], position = ["president", "SA"].
-        mapping(address => uint) votes; // candidateId against their votes
+        string[2] position; // strict length of 2. eg., position = ["president", "Nigeria"], position = ["president", "SA"].
         uint totalVotes;
         bool exists;
     }
 
     mapping(uint => Election) public Elections;
-    Election[] public allElections;
 
     // funcions to...
 
@@ -92,17 +90,20 @@ contract ELECTION_SYSTEM {
 
     // 2. initiate an election
     function initiateElection(
-        string memory _porpose,
+        string memory _purpose,
         address[] memory _candidates, // array of voters/candidates id
-        string[] memory _position
+        string[2] memory _position
     ) public returns (bool) {
-        Election storage election = Elections[electionsCounter];
-        election.electionId = electionsCounter;
-        election.purpose = _porpose;
-        election.candidates = _candidates;
-        election.position = _position;
-        election.exists = true;
-
+        require(!Elections[electionsCounter].exists, "Election already exists");
+        
+        Election storage newElection = Elections[electionsCounter];
+        newElection.electionId = electionsCounter;
+        newElection.purpose = _purpose;
+        newElection.candidates = _candidates;
+        newElection.position = _position;
+        newElection.totalVotes = 0;
+        newElection.exists = true;
+        
         emit electionStarted(electionsCounter);
         electionsCounter = electionsCounter + 1;
         return true;
@@ -114,5 +115,5 @@ contract ELECTION_SYSTEM {
     // 4. add positions an election
 
     uint public candidateId = 0;
-    uint public electionsCounter = 1;
+    uint public electionsCounter = 0;
 }
