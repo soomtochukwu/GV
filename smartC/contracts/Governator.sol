@@ -1,55 +1,19 @@
 // SPDX-License-Identifier: SEE LICENSE IN LICENSE
-pragma solidity >=0.7.0 <0.9.0;
+pragma solidity >=0.8.0 <0.9.0;
 pragma experimental ABIEncoderV2;
 
-contract ELECTION_SYSTEM {
+import "./inherit/NFT.sol";
+import "./inherit/storage.sol";
+
+contract Governator is Storage,  Governator_NFT(msg.sender) {
 
     constructor() {
         initiateElection("National mid-term presidential election, 2027, PO vs BAT",
          0x5B38Da6a701c568545dCfcB03FcB875f56beddC4, 
          0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2, "President", "Nigeria");
     }
-    event newPerson(address indexed newPerson);
-    event electionStarted(uint electionsCounter);
-    event nomination(address indexed nominator, address indexed nominee);
-
-    struct Person {
-        // address _address;
-        uint id;
-        string name;
-        string position;
-        bool exists;
-        bool qualified;
-    }
-
-    mapping(address => Person) public Persons;
-    Person[] private allPersons;
-
-    struct Position {
-        string title;       
-        address holder;
-    }
-    mapping (string => Position) public Positions; // string = a alocation eg., Nigeria, USA
-struct Vote{
-    uint votes;
-}
-mapping (uint => mapping (address => Vote)) public Votes; // electioId against candidates addresses
-    struct Election {
-        uint Id;
-        string purpose; // eg., purpose = "National mid-term presidential election, 2027, PO vs BAT"
-        address candidate1;
-        address candidate2;
-        uint vote_candidate1;
-        uint vote_candidate2;
-        string position; // position = title eg., President, Dev. lead
-        string GEO; // string = a alocation eg., Nigeria, USA
-        uint totalVotes;
-        bool exists;
-    }
-
-    mapping(uint => Election) public Elections;
-
     // funcions to...
+    Person[] private allPersons;
 
     // 1. regiser Person
     function registerPerson(string memory _name) public returns (bool) {
@@ -68,7 +32,7 @@ mapping (uint => mapping (address => Vote)) public Votes; // electioId against c
         return true;
     }
 
-    function getAllPersons() public view returns (Person[] memory) {
+    function getallPersons() public view returns (Person[] memory) {
         return allPersons;
     }
 
@@ -78,9 +42,8 @@ mapping (uint => mapping (address => Vote)) public Votes; // electioId against c
         address _candidate1,
         address _candidate2,
         string memory _position,
-        string memory _geo
+        string memory context
     ) public {
-        require(!Elections[electionsCounter].exists, "Election already exists");
         electionsCounter = electionsCounter + 1;
         
         Election storage newElection = Elections[electionsCounter];
@@ -89,50 +52,68 @@ mapping (uint => mapping (address => Vote)) public Votes; // electioId against c
         newElection.candidate1 = _candidate1;
         newElection.candidate2 = _candidate2;
         newElection.position = _position;
-        newElection.GEO = _geo;
+        newElection.context = context;
 
-        newElection.totalVotes = 0;
-        newElection.exists = true;
-        
         emit electionStarted(electionsCounter);
     }
+
 
     // cast vote
 
     function castVote(uint _electionId, address _candidate) public  {
         Election storage election = Elections[_electionId];
-        Vote storage vote = Votes[_electionId][_candidate];
 
-        vote.votes += 1 ;
+        address candidate1 = election.candidate1;
+        address candidate2 = election.candidate2;
+        
+        if (candidate1 == _candidate) {
+            election.votes_of_candidate1 +=1 ;
+        }
+        if (candidate2  == _candidate) {
+            election.votes_of_candidate2 += 1;
+        }
+
         election.totalVotes += 1;
+        
+        emit voteCasted(msg.sender, _candidate);
         
     }
     // 3. conclude an election
-    function concludeElection(uint _electionId) public  {
+    function concludeElection(uint _electionId) public {
         Election storage election = Elections[_electionId];
+        
         address candidate1 = election.candidate1;
         address candidate2 = election.candidate2;
 
-        uint vote_candidate1 = Votes[_electionId][candidate1].votes;
-        uint vote_candidate2 = Votes[_electionId][candidate2].votes;
+        uint votes_of_candidate1 = election.votes_of_candidate1;
+        uint votes_of_candidate2 = election.votes_of_candidate2;
 
-        string memory GEO = election.GEO;
+        string memory context = election.context;
         string memory position = election.position;
 
-        Position storage position_ = Positions[GEO];
+        Position storage pos = Positions[position][context];
 
-        if (vote_candidate1 > vote_candidate2) {
-            position_.holder = candidate1;
-            position_.title = position;
+        if (votes_of_candidate1 > votes_of_candidate2) {
+            pos.holder = candidate1;
+            Persons[candidate1].position = position;
+            Persons[candidate1].elevatedIn = context;
 
-        }else {
-            position_.holder = candidate2;
-            position_.title = position;
+            emit electionConcluded(_electionId, candidate1);
         }
         
-        election.exists = false;
-    }
+        if (votes_of_candidate2 > votes_of_candidate1) {
+            pos.holder = candidate2;
+            Persons[candidate2].position = position;
+            Persons[candidate2].elevatedIn = context;
 
-    uint public candidateId = 0;
-    uint public electionsCounter = 0;
+            emit electionConcluded(_electionId, candidate2);
+        }
+
+        if(votes_of_candidate1 == votes_of_candidate2){
+            emit draw(_electionId, "Draw: no winner because of equal votes, voting continues");
+        }
+
+
+        election.concluded = true;
+    }
 }
