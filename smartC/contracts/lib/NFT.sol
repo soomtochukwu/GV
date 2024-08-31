@@ -42,4 +42,5 @@ contract Governator_NFT is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
     {
         return super.supportsInterface(interfaceId);
     }
+    
 }

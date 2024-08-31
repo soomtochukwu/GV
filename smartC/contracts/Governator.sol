@@ -2,15 +2,16 @@
 pragma solidity >=0.8.0 <0.9.0;
 pragma experimental ABIEncoderV2;
 
-import "./lib/NFT.sol";
-import "./lib/storage.sol";
 import "./lib/sanityChecks.sol";
+import "./lib/storage.sol";
+import "./lib/NFT.sol";
 
-contract Governator is SanityChecks, Storage, Governator_NFT(msg.sender) {
+contract Governator is Storage, Governator_NFT(msg.sender),SanityChecks {
     constructor() {
-        Moderators[msg.sender] = true;
         registerPerson("MAZI");
+        Moderators[msg.sender] = true;
 
+/* 
         initiateElection(
             "National mid-term presidential election, 2027, PO vs BAT",
             0x5B38Da6a701c568545dCfcB03FcB875f56beddC4,
@@ -18,6 +19,8 @@ contract Governator is SanityChecks, Storage, Governator_NFT(msg.sender) {
             "President",
             "Nigeria"
         );
+        safeMint("MZ");
+        castVote(1,0x5B38Da6a701c568545dCfcB03FcB875f56beddC4); */
     }
 
     // functions to...
@@ -25,11 +28,11 @@ contract Governator is SanityChecks, Storage, Governator_NFT(msg.sender) {
 
     // 1. register Person
     function registerPerson(string memory _callSign) public returns (bool) {
-        require(Persons[msg.sender].exists, "CAN ONLY REGISTER ONCE");
+        require(!Persons[msg.sender].exists, "CAN ONLY REGISTER ONCE");
         Person storage person = Persons[msg.sender];
         // Person._address = msg.sender;
         person.id = candidateId;
-        person.name = _callSign;
+        person.callSign = _callSign;
         person.exists = true;
 
         allPersons.push(Persons[msg.sender]);
@@ -61,6 +64,7 @@ contract Governator is SanityChecks, Storage, Governator_NFT(msg.sender) {
         newElection.position = _position;
         newElection.context = context;
         newElection.startTime = block.timestamp;
+        newElection.conclusionTime = block.timestamp + 86400;
 
         emit electionStarted(electionsCounter);
     }
@@ -73,9 +77,12 @@ contract Governator is SanityChecks, Storage, Governator_NFT(msg.sender) {
     )
         public
         registered(msg.sender)
-        registered(_candidate)
         elapsed(_electionId)
+        voted(_electionId)
     {
+        require(Persons[_candidate].exists, "CANDIDATE DOES NOT EXIST");
+        require(balanceOf(msg.sender) == 1, "CANNOT VOTE: no NFT | MORE THAN ONE NFT");
+        
         Election storage election = Elections[_electionId];
 
         address candidate1 = election.candidate1;
@@ -88,6 +95,7 @@ contract Governator is SanityChecks, Storage, Governator_NFT(msg.sender) {
             election.votes_of_candidate2 += 1;
         }
 
+        election.voted[msg.sender] = true;
         election.totalVotes += 1;
 
         emit voteCasted(msg.sender, _candidate);
@@ -134,5 +142,10 @@ contract Governator is SanityChecks, Storage, Governator_NFT(msg.sender) {
         }
 
         election.concluded = true;
+    }
+
+    function changeElectionDuration(uint _electionId, uint _newDuration /* _newDuration(min) * 60 */ ) public onlyModerators {
+        Election storage election = Elections[_electionId];
+        election.conclusionTime = _newDuration * 60;
     }
 }

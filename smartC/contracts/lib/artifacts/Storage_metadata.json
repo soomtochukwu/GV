@@ -147,6 +147,35 @@
 						"internalType": "bool",
 						"name": "concluded",
 						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "startTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "conclusionTime",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "Moderators",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -169,7 +198,7 @@
 					},
 					{
 						"internalType": "string",
-						"name": "name",
+						"name": "callSign",
 						"type": "string"
 					},
 					{
@@ -260,7 +289,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"smartC/contracts/inherit/storage.sol": "Storage"
+			"smartC/contracts/lib/storage.sol": "Storage"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -274,12 +303,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"smartC/contracts/inherit/storage.sol": {
-			"keccak256": "0x65f32f497762b8842fca708c6542f78587b0ed31db8aa94e599cdeafa050f1dd",
+		"smartC/contracts/lib/storage.sol": {
+			"keccak256": "0xaeac31f988e63a40bc151aad866ab0b6524cb9e21c177c777f3d13ff738b57f4",
 			"license": "SEE LICENSE IN LICENSE",
 			"urls": [
-				"bzz-raw://9128327a2cbf5d967099f672bb0e5cf957ee48bbafea2414c0ca10eb357997d9",
-				"dweb:/ipfs/QmSc7cUyScW4mATVnXBbG8J2NXtaeesdDsuCgtFXSGFHGP"
+				"bzz-raw://fa4f771a42305d71417f7a11a92d821865a3ab6c7071594a12306d2e6405c0ef",
+				"dweb:/ipfs/QmU9UpK5TbrYMcaz1MLXg59di2AgzC73XLUWKWDDhXqdNW"
 			]
 		}
 	},

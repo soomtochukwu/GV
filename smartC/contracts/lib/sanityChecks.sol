@@ -19,20 +19,28 @@ contract SanityChecks is Storage {
     modifier registered(address _operator) {
         require(
             Persons[_operator].exists,
-            "ONLY REGISTERED PERSONS CAN TAKE THIS ACTION."
+            "NOT REGISTERED || ONLY REGISTERED PERSONS CAN TAKE THIS ACTION."
         );
+        _;
+    }
+
+    modifier voted(uint electionId){
+        Election storage election = Elections[electionId];
+    
+        require(!election.voted[msg.sender], "ONE VOTE PER PERSON");
         _;
     }
 
     modifier elapsed(uint electionId){
         Election storage election = Elections[electionId];
-        require(!(block.timestamp >= election.startTime) + 4 days, "ELECTIONS HAS ENDED.");
+        require(!(block.timestamp >= election.startTime  + election.conclusionTime), "ELECTION HAS ENDED.");
         _;
     }
 
     modifier canConclude(uint electionId){
         Election storage election = Elections[electionId];
-        require((block.timestamp >= election.startTime) + 4 days, "ELECTIONS IS STILL ONGOING.");
+        require(!election.concluded, "ELECTION ALREADY CONCLUDED.");
+        require((block.timestamp >= election.startTime  + election.conclusionTime), "ELECTION IS STILL ONGOING.");
         _;
     }
 
@@ -50,26 +58,4 @@ contract SanityChecks is Storage {
     }
 
 
-    /* ** NFT cannot be transferred ** */
-    safeTransferFrom(address from, address to, uint256 tokenId) override returns (string memory) {
-        return "ACTION CANNOT BE TAKEN"
-    } 
-safeTransferFrom(address from, address to, uint256 tokenId, bytes data) override returns (string memory) {
-    return "ACTION CANNOT BE TAKEN"
-}
-transferFrom(address from, address to, uint256 tokenId) override returns (string memory) {
-    return "ACTION CANNOT BE TAKEN"
-}
-approve(address to, uint256 tokenId) override returns (string memory) {
-    return "ACTION CANNOT BE TAKEN"
-}
-setApprovalForAll(address operator, bool approved) override returns (string memory) {
-    return "ACTION CANNOT BE TAKEN"
-}
-getApproved(uint256 tokenId) override returns (string memory) {
-    return "ACTION CANNOT BE TAKEN"
-}
-isApprovedForAll(address owner, address operator) override returns (string memory) {
-    return "ACTION CANNOT BE TAKEN"
-} 
 }

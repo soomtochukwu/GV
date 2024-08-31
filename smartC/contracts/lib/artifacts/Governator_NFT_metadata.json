@@ -738,7 +738,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"smartC/contracts/inherit/NFT.sol": "Governator_NFT"
+			"smartC/contracts/lib/NFT.sol": "Governator_NFT"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -888,12 +888,12 @@
 				"dweb:/ipfs/QmVBEei6aTnvYNZp2CHYVNKyZS4q1KkjANfY39WVXZXVoT"
 			]
 		},
-		"smartC/contracts/inherit/NFT.sol": {
-			"keccak256": "0xb33c705f3ec2684f4294cf18a55096ecf000135a1f12ab4347d63ea4d5c3050b",
+		"smartC/contracts/lib/NFT.sol": {
+			"keccak256": "0x41a4b82fa81e9f955205d951ad01da595938c0fb27648f7dc237c7572be6bd19",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://0709609ef5255c7c7228329d8fc6865a89a1476a30147877310c7e2d185f7873",
-				"dweb:/ipfs/QmdFa4meRkvMG8jBA8GNTxTmJf15RqbNe9v7yqU6A3grac"
+				"bzz-raw://f8929050ce0815d2fec3183b1dc2aff55a82f6cb5901e61fccfc515e68226ce4",
+				"dweb:/ipfs/QmcgYR3UnYiNiQwhaN4cqEZzSd2KP37psA2bX4b99nBTyA"
 			]
 		}
 	},

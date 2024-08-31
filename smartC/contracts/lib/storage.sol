@@ -41,6 +41,8 @@ contract Storage {
         uint totalVotes;
         bool concluded;
         uint startTime;
+        uint conclusionTime; // in seconds eg., 60 sec
+        mapping (address => bool) voted;
     }
 
     mapping(uint => Election) public Elections;
