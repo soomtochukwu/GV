@@ -1,10 +1,13 @@
-import Image from "next/image";
+import { Footer } from "@/components/Footer/footer";
+import RootLayout from "./layout";
+import Header from "@/components/Header/header";
 
 export default function Home() {
   return (
-    <>
-      <h1>home page</h1>
-      <p> governator home page</p>
-    </>
+    <RootLayout>
+      <Header />
+      <p>Governator</p>
+      <Footer />
+    </RootLayout>
   );
 }
