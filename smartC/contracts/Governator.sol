@@ -57,6 +57,7 @@ contract Governator is Storage,  Governator_NFT(msg.sender) {
         emit electionStarted(electionsCounter);
     }
 
+
     // cast vote
 
     function castVote(uint _electionId, address _candidate) public  {
