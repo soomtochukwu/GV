@@ -403,6 +403,35 @@
 						"internalType": "bool",
 						"name": "concluded",
 						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "startTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "conclusionTime",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "Moderators",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -425,7 +454,7 @@
 					},
 					{
 						"internalType": "string",
-						"name": "name",
+						"name": "callSign",
 						"type": "string"
 					},
 					{
@@ -474,6 +503,19 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_Moderator",
+						"type": "address"
+					}
+				],
+				"name": "addModerator",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -563,6 +605,24 @@
 						"internalType": "uint256",
 						"name": "_electionId",
 						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_newDuration",
+						"type": "uint256"
+					}
+				],
+				"name": "changeElectionDuration",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_electionId",
+						"type": "uint256"
 					}
 				],
 				"name": "concludeElection",
@@ -584,27 +644,8 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "tokenId",
-						"type": "uint256"
-					}
-				],
-				"name": "getApproved",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [],
-				"name": "getallPersons",
+				"name": "getAllPersons",
 				"outputs": [
 					{
 						"components": [
@@ -615,7 +656,7 @@
 							},
 							{
 								"internalType": "string",
-								"name": "name",
+								"name": "callSign",
 								"type": "string"
 							},
 							{
@@ -642,6 +683,25 @@
 						"internalType": "struct Storage.Person[]",
 						"name": "",
 						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "getApproved",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
 					}
 				],
 				"stateMutability": "view",
@@ -753,7 +813,7 @@
 				"inputs": [
 					{
 						"internalType": "string",
-						"name": "_name",
+						"name": "_callSign",
 						"type": "string"
 					}
 				],
@@ -769,6 +829,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_Moderator",
+						"type": "address"
+					}
+				],
+				"name": "removeModerator",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "renounceOwnership",
 				"outputs": [],
@@ -777,11 +850,6 @@
 			},
 			{
 				"inputs": [
-					{
-						"internalType": "address",
-						"name": "to",
-						"type": "address"
-					},
 					{
 						"internalType": "string",
 						"name": "uri",
@@ -1256,27 +1324,35 @@
 			]
 		},
 		"smartC/contracts/Governator.sol": {
-			"keccak256": "0x3b2b8bd782624ed86b63a32f7ac15f83901eaba83a8edbaf0b25b78be8704d90",
+			"keccak256": "0x33f5bd90f78ddd754373e4b7dc2289bcded917e21a2ac6a74c1fca419dee8fb3",
 			"license": "SEE LICENSE IN LICENSE",
 			"urls": [
-				"bzz-raw://46ed3d101eef905992dc7e1aaf8942e717a3bd742de6638242e6c82d22a1c428",
-				"dweb:/ipfs/QmWwcEvHe3qmUPs1N44BhHmA2E9Gh4wq8Lf8mANu2Wi843"
+				"bzz-raw://df7b79236fc2aa2244263b5460dbaaf75154d7f8732583ac45348315562d8c26",
+				"dweb:/ipfs/QmchyrsPNK4By7GyLXEgWfa4GWTXwmNwNn7971jkmJahgk"
 			]
 		},
-		"smartC/contracts/inherit/NFT.sol": {
-			"keccak256": "0x536a9ba49497d58325af05ac9e964e6e74c1dc57dae54e5e96616f1d5503e69c",
+		"smartC/contracts/lib/NFT.sol": {
+			"keccak256": "0x41a4b82fa81e9f955205d951ad01da595938c0fb27648f7dc237c7572be6bd19",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://5f965065da712014b39c10dc1c298ac750c6057c121641f684beeefc45766744",
-				"dweb:/ipfs/QmSYbDmFPyqHWRbNybWLkfeACJ2iSWgWVK4RThcwf3MPtp"
+				"bzz-raw://f8929050ce0815d2fec3183b1dc2aff55a82f6cb5901e61fccfc515e68226ce4",
+				"dweb:/ipfs/QmcgYR3UnYiNiQwhaN4cqEZzSd2KP37psA2bX4b99nBTyA"
 			]
 		},
-		"smartC/contracts/storage.sol": {
-			"keccak256": "0x65f32f497762b8842fca708c6542f78587b0ed31db8aa94e599cdeafa050f1dd",
+		"smartC/contracts/lib/sanityChecks.sol": {
+			"keccak256": "0xc045981b4dadd6dc5858ccba9dac728f7e50de1214e2ecf6eb615bce9b4e6973",
 			"license": "SEE LICENSE IN LICENSE",
 			"urls": [
-				"bzz-raw://9128327a2cbf5d967099f672bb0e5cf957ee48bbafea2414c0ca10eb357997d9",
-				"dweb:/ipfs/QmSc7cUyScW4mATVnXBbG8J2NXtaeesdDsuCgtFXSGFHGP"
+				"bzz-raw://e66b5cc67dabc0f61acc3a52169e9af5e8a17d030858261a9e47bf53ed4a4e40",
+				"dweb:/ipfs/QmVgdZ96oSQSCifiSfAJnguwoLTunF89qy51P6qaabC3N3"
+			]
+		},
+		"smartC/contracts/lib/storage.sol": {
+			"keccak256": "0xaeac31f988e63a40bc151aad866ab0b6524cb9e21c177c777f3d13ff738b57f4",
+			"license": "SEE LICENSE IN LICENSE",
+			"urls": [
+				"bzz-raw://fa4f771a42305d71417f7a11a92d821865a3ab6c7071594a12306d2e6405c0ef",
+				"dweb:/ipfs/QmU9UpK5TbrYMcaz1MLXg59di2AgzC73XLUWKWDDhXqdNW"
 			]
 		}
 	},
