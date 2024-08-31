@@ -8,10 +8,12 @@ contract Storage {
     event electionConcluded(uint electionId, address indexed winner);
     event draw(uint, string);
 
+    mapping(address => bool) public Moderators;
+
     struct Person {
         // address _address;
         uint id;
-        string name;
+        string callSign; // eg., PO, BAT, GEJ
         string position;
         string elevatedIn;
         bool exists;
@@ -22,10 +24,10 @@ contract Storage {
     Person[] private allPersons;
 
     struct Position {
-        // string title;       
+        // string title;
         address holder;
     }
-    mapping (string => mapping (string => Position)) public Positions; // mapping (POSITION/TITLE => mapping (CONTEXT/COMMUNITY/STATE => Position))
+    mapping(string => mapping(string => Position)) public Positions; // mapping (POSITION/TITLE => mapping (CONTEXT/COMMUNITY/STATE => Position))
 
     struct Election {
         uint Id;
@@ -38,10 +40,22 @@ contract Storage {
         string context; // string = a alocation/state/community eg., Nigeria, USA
         uint totalVotes;
         bool concluded;
+        uint startTime;
     }
 
     mapping(uint => Election) public Elections;
 
-
     uint public candidateId = 0;
-    uint public electionsCounter = 0;}
+    uint public electionsCounter = 0;
+}
+
+/* 
+
+    function safeMint(string memory uri) public {
+        require(balanceOf(msg.sender) == 0, "ONE NFT PER VOTER");
+        uint256 tokenId = _nextTokenId++;
+        _safeMint(msg.sender, tokenId);
+        _setTokenURI(tokenId, uri);
+    }
+
+ */
