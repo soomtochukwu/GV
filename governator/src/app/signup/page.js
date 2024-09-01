@@ -1,69 +1,66 @@
-// http://localhost:3000/login
-// this page is responsible for rendering the login page
+"use client"
 
+
+// http://localhost:3000/signup
+// this page is responsible for rendering the signup page
 // import { Fragment } from "react";
 import { useState } from "react";
-import { useRouter } from "next/router";
-import "../styles.css";
+import { useRouter } from "next/navigation";
 
-export default function Login() {
-  const [loginState, setLoginState] = useState({
-    email: "",
-    password: "",
-    //wallet: "",
-  });
+export default function Signup() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const navigator = useRouter();
 
-  const handleChange = (e) => {
-    setLoginState((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const handleSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
     const data = {
-      email: loginState.email,
-      password: loginState.password,
+      username,
+      password,
+      email,
     };
     String(data);
     console.log(data);
-    // send loginState to the server
-    setLoginState({
-      email: "",
-      password: "",
-    });
-    // redirect the user to the dashboard
-    navigator.push("/dashboard");
-  };
+    // send the data to the server
+    //reset the form
+    setUsername("");
+    setPassword("");
+    setEmail("");
+    //redirect the user to the login page
+    navigator.push("/login");
+  }
 
   return (
-    <div
-      div
-      className="bg-[#121212] shadow-2xl max-w-[25rem] m-auto text-left rounded-md px-4 py-2"
-    >
-      <h1 className="text-3xl mb-[2rem]">Login</h1>
+    <div className="shadow-2xl bg-gray-800 max-w-[25rem] m-auto text-left rounded-md px-4 py-2">
+      <h1 className="text-3xl mb-[2rem]">Sign Up</h1>
       <form className="" onSubmit={handleSubmit}>
+        <Input
+          label="Username"
+          name="username"
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
         <Input
           label="email"
           name="email"
           type="email"
-          value={loginState.email}
-          onChange={handleChange}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <Input
           label="password"
           name="password"
           type="password"
-          value={loginState.password}
-          onChange={handleChange}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <button
           type="submit"
           className="btn bg-[#124212] text-green-50 mt-[1rem]"
         >
-          Login
+          Sign Up
         </button>
       </form>
     </div>
