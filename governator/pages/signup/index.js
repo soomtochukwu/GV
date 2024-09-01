@@ -1,8 +1,9 @@
 // http://localhost:3000/signup
 // this page is responsible for rendering the signup page
-import { Fragment } from "react";
+// import { Fragment } from "react";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import "../styles.css";
 
 export default function Signup() {
   const [username, setUsername] = useState("");
@@ -12,11 +13,13 @@ export default function Signup() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log({
+    const data = {
       username,
       password,
       email,
-    });
+    };
+    String(data);
+    console.log(data);
     // send the data to the server
     //reset the form
     setUsername("");
@@ -27,9 +30,9 @@ export default function Signup() {
   }
 
   return (
-    <Fragment>
-      <h1>Signup</h1>
-      <form className=" max-w-80 border mx-auto" onSubmit={handleSubmit}>
+    <div className="shadow-2xl bg-gray-800 max-w-[25rem] m-auto text-left rounded-md px-4 py-2">
+      <h1 className="text-3xl mb-[2rem]">Sign Up</h1>
+      <form className="" onSubmit={handleSubmit}>
         <Input
           label="Username"
           name="username"
@@ -51,17 +54,23 @@ export default function Signup() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Signup</button>
+        <button
+          type="submit"
+          className="btn bg-[#124212] text-green-50 mt-[1rem]"
+        >
+          Sign Up
+        </button>
       </form>
-    </Fragment>
+    </div>
   );
 }
 
 export function Input({ label, name, type, value, onChange, ...props }) {
   return (
-    <div>
-      <label>{label}</label>
+    <div className="flex gap-2 flex-col py-1 text-left ">
+      <label className="capitalize text-blue-200">{label}</label>
       <input
+        className="w-full rounded-md p-2 bg-white text-slate-800 border-none outline-0"
         type={type}
         name={name}
         value={value}

@@ -3,7 +3,7 @@
 
 import { Fragment } from "react";
 import Head from "next/head";
-
+import "../styles.css";
 function HomePage() {
 	return (
 		<Fragment>
