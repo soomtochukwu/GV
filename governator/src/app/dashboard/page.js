@@ -1,5 +1,5 @@
-// import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   IoIosNotificationsOutline,
   IoMdArrowDropdown,
@@ -7,10 +7,6 @@ import {
 } from "react-icons/io";
 
 const Dashborad = () => {
-  // const [trends, setTrend] = useState(false);
-  // const [ongoing, setOngoing] = useState(true);
-  // const [completed, setCompleted] = useState(false);
-
   return (
     <div className=" bg-[#010014] space-y-6 px-3 py-3">
       <DashboradHeader
@@ -22,7 +18,7 @@ const Dashborad = () => {
       <div className="flex justify-between  gap-3">
         <section className="w-2/3 border px-4 space-y-4 py-3">
           {/* // Replace the following code with the actual content */}
-          <div className=" border-b-2 shadow-md">
+          <div href="/dashboard/Id" className=" border-b-2 shadow-md">
             <DashboradTracker tracker={true} />
             <DashboradVoteCard trend={true} />
           </div>
@@ -36,18 +32,10 @@ const Dashborad = () => {
           </div>
         </section>
         <section className="w-2/5 border border-green-400 rounded-t-md max-h-fit">
-          <h1 className="bg-green-400 mb-3 px-3 py-2">Onchain Notification</h1>
-          <div className="px-2 ">
-            <article className="flex justify-between items-center bg-[#121212] px-2 py-1 rounded-lg">
-              <span className="inline-flex items-center gap-1">
-                {" "}
-                <Image src={`/animoji3.png`} width={30} height={30} />
-                <span>name</span>
-                purpose
-              </span>
-              <p>just now</p>
-            </article>
-          </div>
+          <h1 className="bg-green-400 mb-3 px-3 py-2 space-y-2">Onchain Notification</h1>
+          <NotificationCard avater={"/animoji3.png"} />
+          <NotificationCard avater={"/animoji3.png"} />
+          <NotificationCard avater={"/animoji3.png"} />
         </section>
       </div>
     </div>
@@ -87,7 +75,7 @@ export function DashboradHeader({ logo, avatarName, avatarImage }) {
 
 export function DashboradVoteCard({ trend }) {
   return (
-    <article className="flex  items-center justify-between pb-1">
+    <article className="md:flex  items-center justify-between pb-1">
       <div className="inline-flex  items-center gap-2">
         <div className="inline-flex ">
           <Image src={`/animoji3.png`} width={30} height={30} />
@@ -106,7 +94,7 @@ export function DashboradVoteCard({ trend }) {
           vote
         </button>
       ) : (
-        <div className=" space-x-4">
+        <div className=" space-x-4 text-nowrap">
           <button className="btn btn-error px-[2.3rem] text-white ">
             view results
           </button>
@@ -122,7 +110,7 @@ export function DashboradVoteCard({ trend }) {
 
 export function DashboradTracker({ tracker }) {
   return (
-    <article className="flex items-start justify-between ">
+    <article className="md:flex items-start justify-between ">
       <div>
         <h1 className="mb-2">The All Hacks Hackathon Contest :</h1>
         <p className="text-md mb-2">
@@ -146,7 +134,7 @@ export function DashboradTracker({ tracker }) {
         <span className="badge badge-success text-white"> Trending</span>
       ) : (
         <p className="text-nowrap space-x-2">
-          <span className="badge   text-gray-700">Ended</span>
+          <span className="badge  text-gray-100">Ended</span>
         </p>
       )}
     </article>
@@ -181,5 +169,21 @@ export function DashboradFilter({ drop }) {
         create vote{" "}
       </button>
     </section>
+  );
+}
+
+export function NotificationCard({ avater, name, purpose, time }) {
+  return (
+    <div className="px-2 mb-2 ">
+      <article className="flex justify-between items-center bg-[#121212] px-2 py-1 rounded-lg">
+        <span className="inline-flex items-center gap-1">
+          {" "}
+          <Image src={avater} width={30} height={30} />
+          <span>{name}</span>
+          {purpose}
+        </span>
+        <p>{time}</p>
+      </article>
+    </div>
   );
 }
