@@ -37,7 +37,7 @@
 - **Improved Trust:** Decentralization and transparency foster trust among community members and stakeholders.
 
 ## FAQ
-<code>
+<pre>
    
 1. Who can vote?
    A registered voter whom
@@ -50,7 +50,7 @@
 3. How long does an election last by default, can it be changed?
    - 4 days,
    - yes 
-</code>
+</pre>
 
 ## Technicalities
 The contract integrates with external contracts from the lib directory, namely
