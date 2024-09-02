@@ -10,16 +10,20 @@
 ## Key Features:
 
 ### Anonymous Voting:
-- **Privacy Protection:** Voters' identities remain confidential, preventing potential coercion or manipulation.
+- **Privacy Protection:** Voters' identities remain confidential, codeventing potential coercion or manipulation.
 - **Fair Elections:** Eliminates biases and ensures that all votes carry equal weight.
 
 ### NFT-Based Voting Rights:
 - **Tokenization:** Each registered voter is minted a unique NFT, acting as a digital passport to participate in elections.
-- **Proof of Ownership:** NFTs provide verifiable proof of voting rights, preventing fraud and double voting.
+
+- **Proof of Ownership:** NFTs provide verifiable proof of voting rights, codeventing fraud and double voting.
+
 
 ### Decentralized Governance:
 - **Community-Driven:** The power to initiate and conclude elections rests with the community, ensuring democratic control.
+
 - **Transparency:** All voting activities, including election results and moderator selections, are publicly verifiable on the blockchain.
+
 
 ### Moderator Selection:
 - **Democratic Process:** Moderators are chosen through a transparent voting mechanism, ensuring accountability and fairness.
@@ -33,24 +37,28 @@
 - **Improved Trust:** Decentralization and transparency foster trust among community members and stakeholders.
 
 ## FAQ
-<pre>
+<code>
    
 1. Who can vote?
    A registered voter whom
    - possesses an NFT,
    - has not voted in a specific election
+   
 2. What happens when count is tied?
    - the election continues for another 2 days
+   
 3. How long does an election last by default, can it be changed?
    - 4 days,
    - yes 
-</pre>
+</code>
 
 ## Technicalities
 The contract integrates with external contracts from the lib directory, namely
 - _sanityChecks.sol_: restrictions, access control, e.t.c.,
 - _storage.sol_: stores decentralized data,
+
 - _NFT.sol_: allows Governator.sol to mint and track NFTs. 
+
 
 _This documentation breaks down each function in the Governator.sol contract by its arguments, returned data, and emitted events._
 
@@ -77,14 +85,16 @@ Here are all the functions defined in `Governator.sol`:
 #### 2. **`getAllPersons`**
    - **Arguments**: None
    - **Returned Data**: 
-     - `Persons[]`: Array of Persons struct/object representing all registered persons.
+     - `Persons[]`: Array of Persons struct/object codesenting all registered persons.
    - **Event Emitted**: None
    - **Modifiers**: None
    - **Description**: 
      This function returns a list of all registered persons in the contract.
 
+
 #### 3. **`initiateElection`**
    - **Arguments**: 
+   
      - `address _person1`: Address of the first candidate.
      - `address _person2`: Address of the second candidate.
      - `string calldata _purpose`: Purpose of the election.
