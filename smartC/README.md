@@ -154,4 +154,4 @@ Here are all the functions defined in `Governator.sol`:
      This function allows a moderator to change the duration of an ongoing election if required.
 
 ## Thanks for reading.
-<img src="https://github.com/soomtochukwu/Governator/blob/main/governator/public/Hidden%20mining-bro%202.svg" alt="pitch deck">
+<img src="https://github.com/soomtochukwu/Governator/blob/main/governator/public/Hidden-mining-bro2.svg" alt="pitch deck">
