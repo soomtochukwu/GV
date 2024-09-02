@@ -43,7 +43,7 @@ export default function Login() {
   return (
     <Fragment>
       <div className="min-h-screen flex">
-        {/****************************Left side with form *******************************/}
+        {/****************************Left side with form ********************************/}
         <div className="flex-1 flex flex-col justify-center items-center bg-white p-8">
           <div className="w-full max-w-md">
             <div className="flex justify-center mb-6">
