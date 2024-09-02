@@ -19,27 +19,35 @@ const Dashborad = () => {
         avatarName={`franklivani`}
       />
       <DashboradFilter drop={true} />
-      <div className="flex justify-between ">
-        <section className="w-2/3 border px-4  py-3">
-          <DashboradTracker tracker={true} />
-          <DashboradVoteCard trend={true} />
+      <div className="flex justify-between  gap-3">
+        <section className="w-2/3 border px-4 space-y-4 py-3">
+          {/* // Replace the following code with the actual content */}
+          <div className=" border-b-2 shadow-md">
+            <DashboradTracker tracker={true} />
+            <DashboradVoteCard trend={true} />
+          </div>
+          <div className=" border-b-2 shadow-md">
+            <DashboradTracker tracker={false} />
+            <DashboradVoteCard trend={false} />
+          </div>
+          <div className=" border-b-2 shadow-md">
+            <DashboradTracker tracker={null} />
+            <DashboradVoteCard trend={true} />
+          </div>
         </section>
-        <section className="w-2/5">
-          <h1>Onchain Notification</h1>
-          <div>
-            <article>
-              <span>
+        <section className="w-2/5 border border-green-400 rounded-t-md max-h-fit">
+          <h1 className="bg-green-400 mb-3 px-3 py-2">Onchain Notification</h1>
+          <div className="px-2 ">
+            <article className="flex justify-between items-center bg-[#121212] px-2 py-1 rounded-lg">
+              <span className="inline-flex items-center gap-1">
                 {" "}
                 <Image src={`/animoji3.png`} width={30} height={30} />
                 <span>name</span>
                 purpose
               </span>
+              <p>just now</p>
             </article>
-            <p>
-              <span>time</span>
-            </p>
           </div>
-          <p></p>
         </section>
       </div>
     </div>
@@ -79,7 +87,7 @@ export function DashboradHeader({ logo, avatarName, avatarImage }) {
 
 export function DashboradVoteCard({ trend }) {
   return (
-    <article className="flex  items-center justify-between">
+    <article className="flex  items-center justify-between pb-1">
       <div className="inline-flex  items-center gap-2">
         <div className="inline-flex ">
           <Image src={`/animoji3.png`} width={30} height={30} />
