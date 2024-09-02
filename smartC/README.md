@@ -64,7 +64,7 @@ _This documentation breaks down each function in the Governator.sol contract by 
 
 Here are all the functions defined in `Governator.sol`:
 
-1. **registerPerson()**
+1. **registerPerson(string memory _callSign)**
 2. **getAllPersons()**
 3. **initiateElection(address _person1, address _person2, string calldata _purpose, string calldata _position, string calldata _context)**
 4. **castVote(uint256 _electionID, address _candidate)**
@@ -73,8 +73,9 @@ Here are all the functions defined in `Governator.sol`:
 
    
 #### 1. **`registerPerson`**
-   - **Arguments**: None
-   - **Returned Data**: None
+   - **Arguments**: 
+     - `string callSign`: aka/callSign of the voter.
+   - **Returned Data**: 
    - **Event Emitted**: 
      - `newPerson(uint256 indexed id)`
        - `id`: Unique ID assigned to the person.
