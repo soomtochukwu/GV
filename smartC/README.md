@@ -71,7 +71,6 @@ Here are all the functions defined in `Governator.sol`:
 5. **concludeElection(uint256 _electionID)**
 6. **changeElectionDuration(uint256 _electionID, uint256 _newDuration)**
 
-<pre>
    
 #### 1. **`registerPerson`**
    - **Arguments**: None
@@ -153,6 +152,4 @@ Here are all the functions defined in `Governator.sol`:
      - `onlyModerators`: Ensures that only a moderator can call this function.
    - **Description**: 
      This function allows a moderator to change the duration of an ongoing election if required.
-
-</pre>
 
