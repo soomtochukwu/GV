@@ -1,11 +1,13 @@
-Governator.sol Documentation
-Overview
-Governator.sol is a smart contract that facilitates decentralized governance. It allows users to register, initiate elections, cast votes, and conclude elections. The contract integrates with external contracts from the lib directory, namely
-- sanityChecks.sol
-- storage.sol
-- NFT.sol
+<img src="https://github.com/soomtochukwu/Governator/blob/main/governator/public/gv%20p%20d.png" alt="pitch deck">
 
-This documentation breaks down each function in the Governator.sol contract by its arguments, returned data, and emitted events.
+# Governator, the smart contract documentation
+## Overview
+Governator.sol is a smart contract that facilitates decentralized governance. It allows users to register, initiate elections, cast votes, and conclude elections. The contract integrates with external contracts from the lib directory, namely
+- _sanityChecks.sol_
+- _storage.sol_
+- _NFT.sol_
+
+_This documentation breaks down each function in the Governator.sol contract by its arguments, returned data, and emitted events._
 
 Here are all the functions defined in `Governator.sol`:
 
