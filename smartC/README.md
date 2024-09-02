@@ -32,9 +32,22 @@
 - **Reduced Costs:** Eliminates the need for costly and time-consuming traditional voting methods.
 - **Improved Trust:** Decentralization and transparency foster trust among community members and stakeholders.
 
-`Governor.sol` offers a promising solution for communities seeking to implement fair, efficient, and secure decentralized governance systems. By combining the power of blockchain technology with the principles of democracy, this smart contract empowers individuals to actively participate in shaping the future of their communities.
+## FAQ
+<pre>
+   
+1. Who can vote?
+   A registered voter whom
+   - possesses an NFT,
+   - has not voted in a specific election
+2. What happens when count is tied?
+   - the election continues for another 2 days
+3. How long does an election last by default, can it be changed?
+   - 4 days,
+   - yes 
+</pre>
 
-<br>The contract integrates with external contracts from the lib directory, namely
+## Technicalities
+The contract integrates with external contracts from the lib directory, namely
 - _sanityChecks.sol_: restrictions, access control, e.t.c.,
 - _storage.sol_: stores decentralized data,
 - _NFT.sol_: allows Governator.sol to mint and track NFTs. 
@@ -55,9 +68,8 @@ Here are all the functions defined in `Governator.sol`:
    - **Arguments**: None
    - **Returned Data**: None
    - **Event Emitted**: 
-     - `newPerson(uint256 indexed id, address indexed person)`
+     - `newPerson(uint256 indexed id)`
        - `id`: Unique ID assigned to the person.
-       - `person`: Address of the registered person.
    - **Modifiers**: None
    - **Description**: 
      This function registers a new person in the system. The function checks if the person is already registered and, if not, assigns them a unique ID and stores their data.
@@ -65,7 +77,7 @@ Here are all the functions defined in `Governator.sol`:
 #### 2. **`getAllPersons`**
    - **Arguments**: None
    - **Returned Data**: 
-     - `address[]`: Array of addresses representing all registered persons.
+     - `Persons[]`: Array of Persons struct/object representing all registered persons.
    - **Event Emitted**: None
    - **Modifiers**: None
    - **Description**: 
@@ -77,19 +89,15 @@ Here are all the functions defined in `Governator.sol`:
      - `address _person2`: Address of the second candidate.
      - `string calldata _purpose`: Purpose of the election.
      - `string calldata _position`: Position being contested in the election.
-     - `string calldata _context`: Context or additional details about the election.
+     - `string calldata _context`: Location or Institution where the election is goin on.
    - **Returned Data**: None
    - **Event Emitted**: 
-     - `electionStarted(uint256 indexed id, string purpose, string position, string context, address indexed moderator)`
-       - `id`: Unique ID of the election.
-       - `purpose`: Purpose of the election.
-       - `position`: Position being contested.
-       - `context`: Additional details about the election.
-       - `moderator`: Address of the moderator who initiated the election.
+     - `electionStarted(uint256 indexed id)`
+       - `id`: Unique ID of the election which can be used to query the smart contract for the given election details.
    - **Modifiers**: 
      - `onlyModerators`: Ensures that only a moderator can call this function.
    - **Description**: 
-     This function allows a moderator to start a new election with two candidates. The purpose, position, and context of the election are provided as arguments.
+     This function allows a moderator to start a new election with two candidates. The purpose, position, and context of the election are provided as arguments. **ELECTION LASTS FOR 4 DAYS BY DEFAULT, THISCAN BE CHANGED BY CALLING _changeElectionDuration(uint electionId, uint newDuration)_ FUNCTION**.
 
 #### 4. **`castVote`**
    - **Arguments**: 
@@ -122,7 +130,7 @@ Here are all the functions defined in `Governator.sol`:
      - `onlyModerators`: Ensures that only a moderator can call this function.
      - `canConclude`: Ensures that the election can be concluded.
    - **Description**: 
-     This function concludes the election and determines the winner based on vote counts. If the vote count is tied, the election is declared a draw.
+     This function concludes the election and determines the winner based on vote counts. If the vote count is tied, the election is declared a draw and continues for two days.
 
 #### 6. **`changeElectionDuration`**
    - **Arguments**: 
@@ -133,8 +141,6 @@ Here are all the functions defined in `Governator.sol`:
    - **Modifiers**: 
      - `onlyModerators`: Ensures that only a moderator can call this function.
    - **Description**: 
-     This function allows a moderator to change the duration of an ongoing election.
+     This function allows a moderator to change the duration of an ongoing election if required.
 
 ---
-
-This documentation describes the key functions of the `Governator.sol` contract, including their arguments, returned data, events emitted, and applicable modifiers.
