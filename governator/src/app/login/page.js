@@ -1,4 +1,4 @@
-
+"use client";
 // http://localhost:3000/login
 // this page is responsible for rendering the login page
 import { Fragment, useState } from "react";
@@ -7,7 +7,6 @@ import Image from "next/image";
 import Link from "next/link";
 import InputButton from "../../../components/InputButton";
 import LoginIcon from "../../../components/LoginIcon";
-import HeaderLogo from "../../../components/HeaderLogo";
 export default function Login() {
   const [loginState, setLoginState] = useState({
     email: "",
@@ -44,17 +43,16 @@ export default function Login() {
   return (
     <Fragment>
       <div className="min-h-screen flex">
-        <HeaderLogo />
         {/****************************Left side with form *******************************/}
         <div className="flex-1 flex flex-col justify-center items-center bg-white p-8">
           <div className="w-full max-w-md">
             <div className="flex justify-center mb-6">
               {/* Placeholder for the logo */}
               <Image
-                src="/logo-placeholder.png" // Replace with the actual logo path
+                src="/welcomeback.svg" // Replace with the actual logo path
                 alt="Governator Logo"
-                width={60}
-                height={60}
+                width={300}
+                height={300}
                 className="object-contain"
               />
             </div>
@@ -115,10 +113,10 @@ export default function Login() {
         <div className="hidden lg:flex flex-1 bg-gray-900 text-white items-center justify-center">
           <div className="w-full max-w-lg">
             <Image
-              src="" // We are going to replace the image later
+              src="/Hidden-mining-bro2.svg" // We are going to replace the image later
               alt="Governator image"
-              width={600}
-              height={600}
+              width={1000}
+              height={1000}
               className="object-contain"
             />
           </div>
