@@ -2,10 +2,44 @@
 
 # Governator, the smart contract documentation
 ## Overview
-Governator.sol is a smart contract that facilitates decentralized governance. It allows users to register, initiate elections, cast votes, and conclude elections. The contract integrates with external contracts from the lib directory, namely
-- _sanityChecks.sol_
-- _storage.sol_
-- _NFT.sol_
+
+```markdown
+# Governor.sol
+
+`Governor.sol` is a blockchain-based smart contract designed to empower communities, Nations, or any entity that migth need it, with decentralized governance. This innovative solution leverages blockchain technology to ensure transparency, security, and fairness in the voting process.
+
+## Key Features:
+
+### Anonymous Voting:
+- **Privacy Protection:** Voters' identities remain confidential, preventing potential coercion or manipulation.
+- **Fair Elections:** Eliminates biases and ensures that all votes carry equal weight.
+
+### NFT-Based Voting Rights:
+- **Tokenization:** Each registered voter is minted a unique NFT, acting as a digital passport to participate in elections.
+- **Proof of Ownership:** NFTs provide verifiable proof of voting rights, preventing fraud and double voting.
+
+### Decentralized Governance:
+- **Community-Driven:** The power to initiate and conclude elections rests with the community, ensuring democratic control.
+- **Transparency:** All voting activities, including election results and moderator selections, are publicly verifiable on the blockchain.
+
+### Moderator Selection:
+- **Democratic Process:** Moderators are chosen through a transparent voting mechanism, ensuring accountability and fairness.
+- **Oversight:** Moderators play a crucial role in overseeing the election process and ensuring compliance with established rules.
+
+## Benefits of Governor.sol:
+
+- **Increased Participation:** The ease of registration and anonymous voting encourages broader engagement from community members.
+- **Enhanced Security:** Blockchain technology provides a tamper-proof and transparent record of all voting activities.
+- **Reduced Costs:** Eliminates the need for costly and time-consuming traditional voting methods.
+- **Improved Trust:** Decentralization and transparency foster trust among community members and stakeholders.
+
+`Governor.sol` offers a promising solution for communities seeking to implement fair, efficient, and secure decentralized governance systems. By combining the power of blockchain technology with the principles of democracy, this smart contract empowers individuals to actively participate in shaping the future of their communities.
+```
+
+<br>The contract integrates with external contracts from the lib directory, namely
+- _sanityChecks.sol_: restrictions, access control, e.t.c.,
+- _storage.sol_: stores decentralized data,
+- _NFT.sol_: allows Governator.sol to mint and track NFTs. 
 
 _This documentation breaks down each function in the Governator.sol contract by its arguments, returned data, and emitted events._
 
@@ -18,7 +52,6 @@ Here are all the functions defined in `Governator.sol`:
 5. **concludeElection(uint256 _electionID)**
 6. **changeElectionDuration(uint256 _electionID, uint256 _newDuration)**
 
-<hr></hr>
 
 #### 1. **`registerPerson`**
    - **Arguments**: None
