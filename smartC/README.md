@@ -3,7 +3,6 @@
 # Governator, the smart contract documentation
 ## Overview
 
-```markdown
 # Governor.sol
 
 `Governor.sol` is a blockchain-based smart contract designed to empower communities, Nations, or any entity that migth need it, with decentralized governance. This innovative solution leverages blockchain technology to ensure transparency, security, and fairness in the voting process.
@@ -34,7 +33,6 @@
 - **Improved Trust:** Decentralization and transparency foster trust among community members and stakeholders.
 
 `Governor.sol` offers a promising solution for communities seeking to implement fair, efficient, and secure decentralized governance systems. By combining the power of blockchain technology with the principles of democracy, this smart contract empowers individuals to actively participate in shaping the future of their communities.
-```
 
 <br>The contract integrates with external contracts from the lib directory, namely
 - _sanityChecks.sol_: restrictions, access control, e.t.c.,
