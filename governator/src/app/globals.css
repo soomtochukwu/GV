@@ -45,3 +45,10 @@ body {
   padding-left: 1em;
   padding-right: 1em;
 }
+
+.ngtBG {
+  background-image: url("/NFT_BG.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
