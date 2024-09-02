@@ -1,4 +1,3 @@
-"use client";
 
 // http://localhost:3000/login
 // this page is responsible for rendering the login page
